@@ -1,0 +1,12 @@
+.calendarBox,
+.calendarAppName {
+    grid-row: 1;
+}
+
+.calendarAppName {
+}
+
+.calendarRow,
+.calendarHeader {
+    display: grid;
+}
