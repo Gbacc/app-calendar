@@ -3,6 +3,13 @@ export const ADD_RESERVATION = 'ADD_RESERVATION';
 export const UPDATE_RESERVATION = 'UPDATE_RESERVATION';
 export const DELETE_RESERVATION = 'DELETE_RESERVATION';
 
+export function getReservationForDate(date){
+    return {
+        type: GET_RESERVATION,
+        payload: { date }
+    }
+}
+
 export function addReservation(appId, userId, startDate, endDate) {
     return {
         type: ADD_RESERVATION,
@@ -28,4 +35,4 @@ export function deleteReservation(appId, reservationId) {
     }
 }
 
-export default { addReservation, updateReservation, deleteReservation };
+export default { addReservation, updateReservation, deleteReservation, getReservationForDate };
