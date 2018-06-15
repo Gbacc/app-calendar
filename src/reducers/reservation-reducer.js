@@ -1,30 +1,29 @@
 import { GET_RESERVATION, ADD_RESERVATION, UPDATE_RESERVATION, DELETE_RESERVATION } from '../actions/reservation-actions';
 
-const mockAppReservations = {
+const initialMock = {
     calendarData: [{
         id: 1, label: 'App one', reservations: [
-            { id: 1, userId: 1, startDate: '2018-06-13T14:00:00+0200', endDate: '2018-06-13T23:00:00+0200' },
-            { id: 4, userId: 2, startDate: '2018-06-13T15:00:00+0200', endDate: '2018-06-13T18:00:00+0200' },
+            { id: 1, userId: 1, startDate: '2018-06-15T14:00:00+0200', endDate: '2018-06-15T23:00:00+0200' },
+            { id: 4, userId: 2, startDate: '2018-06-15T15:00:00+0200', endDate: '2018-06-15T18:00:00+0200' },
         ]
     },
     {
         id: 2, label: 'App two', reservations: [
-            { id: 2, userId: 1, startDate: '2018-06-13T14:00:00+0200', endDate: '2018-06-13T23:00:00+0200' },
-            { id: 5, userId: 3, startDate: '2018-06-13T11:00:00+0200', endDate: '2018-06-13T16:00:00+0200' },
+            { id: 2, userId: 1, startDate: '2018-06-15T14:00:00+0200', endDate: '2018-06-15T23:00:00+0200' },
+            { id: 5, userId: 3, startDate: '2018-06-15T11:00:00+0200', endDate: '2018-06-15T16:00:00+0200' },
         ]
     },
     {
         id: 3, label: 'App three', reservations: [
-            { id: 3, userId: 1, startDate: '2018-06-13T21:00:00+0200', endDate: '2018-06-13T23:00:00+0200' },
+            { id: 3, userId: 1, startDate: '2018-06-15T21:00:00+0200', endDate: '2018-06-15T23:00:00+0200' },
         ]
-    }],
-    selectedDate: new Date()
+    }]
 };
 
-export default function (state = mockAppReservations, action) {
+export default function (state = initialMock, action) {
     switch (action.type) {
         case GET_RESERVATION: {
-
+            return state;
         }
 
         case ADD_RESERVATION: {
@@ -54,7 +53,7 @@ export default function (state = mockAppReservations, action) {
             let newCalendarData = state.calendarData.map(application => {
                 if (application.id === action.payload.appId) {
                     let newReservationList = application.reservations.filter(reservation => reservation.id !== action.payload.reservationId);
-                    return { ...application, reservations: newReservationList}
+                    return { ...application, reservations: newReservationList }
                 } else {
                     return application
                 }

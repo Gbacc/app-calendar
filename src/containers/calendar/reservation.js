@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './calendar-row.css';
+import { connect } from 'react-redux';
 
-class CalendarRow extends Component {
+import './reservation.css';
 
+class Reservation extends Component {
     render() {
-
         let columnsView = [];
 
         // Refence de date displayed by the column starting 0 am
-        let columnDate = new Date(this.props.currentDate);
+        let columnDate = new Date(this.props.selectedDate);
         columnDate.setHours(0);
 
-        for (let column = 0; column <= this.props.columnNumber; column++) {
+        for (let column = 0; column <= this.props.displayColumnCount; column++) {
 
             let reservationOnThisColumn = 0;
-            
+
             // Check every reservation if it matches the column timestamp
             for (let appReservation of this.props.data.reservations) {
                 const startDate = new Date(appReservation.startDate);
@@ -37,10 +37,17 @@ class CalendarRow extends Component {
     }
 }
 
-CalendarRow.propTypes = {
+Reservation.propTypes = {
     data: PropTypes.object.isRequired,
-    currentDate: PropTypes.objectOf(Date).isRequired,
-    columnNumber: PropTypes.number.isRequired
+    selectedDate: PropTypes.objectOf(Date).isRequired,
+    displayColumnCount: PropTypes.number.isRequired
 }
 
-export default CalendarRow;
+function mapStateToProps(state) {
+    return {
+        displayColumnCount: state.calendar.displayColumnCount,
+        selectedDate: state.calendar.selectedDate,
+    };
+}
+
+export default connect(mapStateToProps)(Reservation);
